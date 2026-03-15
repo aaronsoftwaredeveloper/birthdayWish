@@ -3,104 +3,446 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>Happy Birthday My Love</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+
+html{
+height:100%;
+overflow:hidden;
+}
 
 body{
-font-family:'Segoe UI',sans-serif;
-height:100vh;
+font-family:'Poppins',sans-serif;
+min-height:100vh;
+min-height:100dvh;
 overflow:hidden;
 display:flex;
 justify-content:center;
 align-items:center;
 color:white;
 text-align:center;
-background: radial-gradient(circle at top,#ff4e78,#b30059);
+background: radial-gradient(ellipse at top, #ff6b9d 0%, #c44569 30%, #6b0033 70%, #2d0016 100%);
+position:relative;
+-webkit-overflow-scrolling:touch;
 }
 
-.container{max-width:700px;padding:40px;z-index:2;}
+.container{
+max-width:750px;
+width:100%;
+padding:40px;
+z-index:10;
+position:relative;
+}
 
 h1{
-font-size:32px;
-margin-bottom:20px;
-text-shadow:0 0 0px #ff99c8;
+font-family:'Great Vibes', cursive;
+font-size:48px;
+margin-bottom:45px;
+text-shadow:0 0 20px rgba(255,182,213,0.8), 0 0 40px rgba(255,78,120,0.5);
+background: linear-gradient(135deg, #fff 0%, #ffd6e0 50%, #ff99c8 100%);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+background-clip:text;
+animation: titleShimmer 3s ease-in-out infinite;
+line-height:1.5;
+}
+
+@keyframes titleShimmer {
+0%, 100% { filter: brightness(1); }
+50% { filter: brightness(1.3); }
 }
 
 button{
-padding:18px 40px;
-font-size:20px;
-border:none;
-border-radius:40px;
-background:white;
-color:#ff4e78;
+padding:20px 50px;
+font-size:22px;
+font-family:'Poppins',sans-serif;
+font-weight:600;
+border:2px solid rgba(255,255,255,0.3);
+border-radius:50px;
+background: linear-gradient(135deg, #ff6b9d, #ff4e78, #e91e63);
+color:white;
 cursor:pointer;
-transition:0.3s;
-box-shadow:0 0 15px #ff4e78;
+transition:all 0.4s ease;
+box-shadow:0 0 30px rgba(255,78,120,0.6), 0 5px 20px rgba(0,0,0,0.3);
+letter-spacing:1px;
+position:relative;
+overflow:hidden;
+-webkit-appearance:none;
+touch-action:manipulation;
 }
 
-button:hover{transform:scale(1.1);}
+button::before {
+content:'';
+position:absolute;
+top:-50%;left:-50%;
+width:200%;height:200%;
+background:linear-gradient(45deg, transparent 40%, rgba(255,255,255,0.3) 50%, transparent 60%);
+animation: buttonShine 3s infinite;
+}
+
+@keyframes buttonShine {
+0% { transform: translateX(-100%) rotate(45deg); }
+100% { transform: translateX(100%) rotate(45deg); }
+}
+
+button:active{
+transform:scale(0.95);
+box-shadow:0 0 50px rgba(255,78,120,0.8), 0 0 80px rgba(255,153,200,0.4);
+}
+
+#messageBox {
+background: rgba(255,255,255,0.95);
+-webkit-backdrop-filter: blur(20px);
+backdrop-filter: blur(20px);
+border-radius: 20px;
+padding: 30px 25px;
+margin-top: 25px;
+min-height: 100px;
+display: none;
+box-shadow:
+  0 10px 40px rgba(0,0,0,0.3),
+  0 0 40px rgba(255,78,120,0.2);
+border: 2px solid rgba(255,153,200,0.3);
+position:relative;
+overflow:hidden;
+}
+
+#messageBox::before {
+content:'';
+position:absolute;
+top:-2px;left:-2px;right:-2px;bottom:-2px;
+border-radius:20px;
+background: linear-gradient(135deg, #ff99c8, #ff4e78, #ff99c8, #ffd6e0);
+z-index:-1;
+animation: borderGlow 4s linear infinite;
+background-size:300% 300%;
+}
+
+@keyframes borderGlow {
+0% { background-position: 0% 50%; }
+50% { background-position: 100% 50%; }
+100% { background-position: 0% 50%; }
+}
+
+#messageBox .corner-deco {
+position:absolute;
+font-size:16px;
+opacity:0.6;
+}
+#messageBox .corner-deco.tl { top:6px; left:8px; }
+#messageBox .corner-deco.tr { top:6px; right:8px; }
+#messageBox .corner-deco.bl { bottom:6px; left:8px; }
+#messageBox .corner-deco.br { bottom:6px; right:8px; }
 
 #message{
-font-size:28px;
-line-height:1.6;
-margin-top:30px;
-min-height:200px;
+font-size:22px;
+font-family:'Playfair Display', serif;
+line-height:1.7;
+color: #4a0028;
+font-weight:400;
+word-wrap:break-word;
+overflow-wrap:break-word;
 }
 
 .final{
-font-size:40px;
-margin-top:20px;
+font-family:'Great Vibes', cursive;
+font-size:38px;
+color:#ff4e78;
 animation:glow 2s infinite alternate;
+text-shadow: 0 0 20px rgba(255,78,120,0.5);
+line-height:1.4;
 }
 
 @keyframes glow{
-from{text-shadow:0 0 10px #ff7eb3;}
-to{text-shadow:0 0 35px #ff4e78;}
+from{text-shadow:0 0 15px #ff7eb3, 0 0 30px rgba(255,126,179,0.3);}
+to{text-shadow:0 0 40px #ff4e78, 0 0 70px rgba(255,78,120,0.5);}
 }
 
 .heart{
 position:absolute;
-font-size:22px;
-animation:float 6s linear infinite;
+animation:floatHeart 7s ease-in infinite;
+pointer-events:none;
+z-index:1;
+will-change:transform,opacity;
 }
 
-@keyframes float{
-0%{transform:translateY(100vh);opacity:1;}
-100%{transform:translateY(-10vh);opacity:0;}
+@keyframes floatHeart{
+0%{transform:translateY(100vh) scale(0.5) rotate(0deg);opacity:0.9;}
+50%{opacity:1;}
+100%{transform:translateY(-15vh) scale(1.2) rotate(20deg);opacity:0;}
 }
 
 .sparkle{
 position:absolute;
-font-size:16px;
-animation:sparkle 2s linear infinite;
+pointer-events:none;
+animation:sparkleAnim 2.5s ease-in-out infinite;
+z-index:1;
+will-change:transform,opacity;
 }
 
-@keyframes sparkle{
-0%{transform:scale(0);opacity:0}
-50%{transform:scale(1.5);opacity:1}
-100%{transform:scale(0);opacity:0}
+@keyframes sparkleAnim{
+0%{transform:scale(0) rotate(0deg);opacity:0;}
+30%{opacity:1;}
+50%{transform:scale(1.8) rotate(180deg);opacity:1;}
+100%{transform:scale(0) rotate(360deg);opacity:0;}
 }
 
 .confetti{
 position:absolute;
-width:10px;
-height:10px;
+border-radius:2px;
 animation:confettiFall 5s linear infinite;
+pointer-events:none;
+z-index:1;
+will-change:transform,opacity;
 }
 
 @keyframes confettiFall{
-0%{transform:translateY(-10vh) rotate(0deg);}
-100%{transform:translateY(110vh) rotate(360deg);}
+0%{transform:translateY(-10vh) rotate(0deg) scale(1);opacity:1;}
+100%{transform:translateY(110vh) rotate(720deg) scale(0.5);opacity:0.3;}
+}
+
+.balloon {
+position:absolute;
+animation: balloonFloat 8s ease-in-out infinite;
+pointer-events:none;
+z-index:1;
+will-change:transform,opacity;
+}
+
+@keyframes balloonFloat {
+0%   { transform: translateY(110vh) rotate(-5deg); opacity:0.9; }
+50%  { transform: translateY(50vh) rotate(5deg); opacity:1; }
+100% { transform: translateY(-15vh) rotate(-5deg); opacity:0; }
+}
+
+.rosePetal {
+position:absolute;
+animation: petalFall 6s ease-in-out infinite;
+pointer-events:none;
+z-index:1;
+will-change:transform,opacity;
+}
+
+@keyframes petalFall {
+0%   { transform: translateY(-10vh) translateX(0) rotate(0deg); opacity:1; }
+25%  { transform: translateY(25vh) translateX(30px) rotate(90deg); opacity:0.9; }
+50%  { transform: translateY(50vh) translateX(-20px) rotate(180deg); opacity:0.8; }
+75%  { transform: translateY(75vh) translateX(40px) rotate(270deg); opacity:0.5; }
+100% { transform: translateY(110vh) translateX(10px) rotate(360deg); opacity:0; }
+}
+
+.goldenStar {
+position:absolute;
+animation: starTwinkle 3s ease-in-out infinite;
+pointer-events:none;
+z-index:1;
+will-change:transform,opacity;
+}
+
+@keyframes starTwinkle {
+0%   { transform: scale(0) rotate(0deg); opacity:0; }
+25%  { transform: scale(1.2) rotate(72deg); opacity:1; }
+50%  { transform: scale(0.8) rotate(144deg); opacity:0.7; }
+75%  { transform: scale(1.5) rotate(216deg); opacity:1; }
+100% { transform: scale(0) rotate(360deg); opacity:0; }
+}
+
+.ribbon {
+position:absolute;
+animation: ribbonDance 7s linear infinite;
+pointer-events:none;
+z-index:1;
+will-change:transform,opacity;
+}
+
+@keyframes ribbonDance {
+0%   { transform: translateY(-10vh) translateX(0) rotate(0deg) scaleX(1); opacity:0.9; }
+33%  { transform: translateY(33vh) translateX(50px) rotate(120deg) scaleX(-1); opacity:1; }
+66%  { transform: translateY(66vh) translateX(-30px) rotate(240deg) scaleX(1); opacity:0.7; }
+100% { transform: translateY(110vh) translateX(20px) rotate(360deg) scaleX(-1); opacity:0; }
+}
+
+.fireworkBurst {
+position:absolute;
+pointer-events:none;
+z-index:15;
+animation: burstAnim 1.5s ease-out forwards;
+will-change:transform,opacity;
+}
+
+@keyframes burstAnim {
+0%   { transform: scale(0); opacity:1; }
+50%  { transform: scale(2); opacity:0.8; }
+100% { transform: scale(3); opacity:0; }
+}
+
+.glowOrb {
+position:fixed;
+border-radius:50%;
+filter:blur(60px);
+opacity:0.15;
+z-index:0;
+animation:orbFloat 10s ease-in-out infinite alternate;
+pointer-events:none;
+}
+
+@keyframes orbFloat {
+0%   { transform: translate(0, 0); }
+100% { transform: translate(30px, -40px); }
 }
 
 canvas{
 position:fixed;
 top:0;
 left:0;
+width:100%;
+height:100%;
 z-index:-1;
+}
+
+/* ===== MOBILE: screens up to 480px (most phones) ===== */
+@media screen and (max-width:480px){
+  .container{
+    padding:20px 16px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    min-height:100vh;
+    min-height:100dvh;
+  }
+
+  h1{
+    font-size:30px;
+    margin-bottom:18px;
+    padding:0 5px;
+  }
+
+  button{
+    padding:16px 36px;
+    font-size:18px;
+    letter-spacing:0.5px;
+  }
+
+  #messageBox{
+    padding:22px 18px;
+    margin-top:20px;
+    border-radius:18px;
+    min-height:80px;
+  }
+
+  #messageBox .corner-deco { font-size:13px; }
+  #messageBox .corner-deco.tl { top:5px; left:6px; }
+  #messageBox .corner-deco.tr { top:5px; right:6px; }
+  #messageBox .corner-deco.bl { bottom:5px; left:6px; }
+  #messageBox .corner-deco.br { bottom:5px; right:6px; }
+
+  #message{
+    font-size:19px;
+    line-height:1.6;
+    padding:0 4px;
+  }
+
+  .final{
+    font-size:30px;
+  }
+
+  .glowOrb{
+    filter:blur(40px);
+    opacity:0.1;
+  }
+}
+
+/* ===== MOBILE: very small screens (Galaxy S series, older phones) ===== */
+@media screen and (max-width:360px){
+  .container{
+    padding:15px 12px;
+  }
+
+  h1{
+    font-size:25px;
+    margin-bottom:14px;
+  }
+
+  button{
+    padding:14px 30px;
+    font-size:16px;
+  }
+
+  #messageBox{
+    padding:18px 14px;
+    margin-top:16px;
+    border-radius:15px;
+  }
+
+  #message{
+    font-size:17px;
+    line-height:1.5;
+  }
+
+  .final{
+    font-size:26px;
+  }
+}
+
+/* ===== TABLET: 481px to 768px ===== */
+@media screen and (min-width:481px) and (max-width:768px){
+  .container{
+    padding:30px 24px;
+  }
+
+  h1{
+    font-size:38px;
+  }
+
+  #message{
+    font-size:24px;
+  }
+
+  .final{
+    font-size:36px;
+  }
+}
+
+/* ===== LANDSCAPE on phones ===== */
+@media screen and (max-height:450px) and (orientation:landscape){
+  .container{
+    padding:10px 20px;
+  }
+
+  h1{
+    font-size:22px;
+    margin-bottom:8px;
+  }
+
+  button{
+    padding:10px 28px;
+    font-size:16px;
+  }
+
+  #messageBox{
+    padding:14px 16px;
+    margin-top:10px;
+    min-height:60px;
+  }
+
+  #message{
+    font-size:16px;
+    line-height:1.4;
+  }
+
+  .final{
+    font-size:24px;
+  }
 }
 </style>
 </head>
@@ -109,10 +451,21 @@ z-index:-1;
 
 <canvas id="stars"></canvas>
 
+<div class="glowOrb" style="width:300px;height:300px;background:#ff4e78;top:10%;left:5%;"></div>
+<div class="glowOrb" style="width:250px;height:250px;background:#ff99c8;bottom:10%;right:5%;animation-delay:3s;"></div>
+<div class="glowOrb" style="width:200px;height:200px;background:#ffd6e0;top:50%;left:60%;animation-delay:6s;"></div>
+
 <div class="container">
-<h1>🎂 Happy Birthday My Sweetheart Jenny Darling 🎂 </h1>
-<button onclick="startStory()"> Jannuu please click here ❤️</button>
-<div id="message"></div>
+<h1>🎂 Happy Birthday My Sweetheart Jenny Darling 🎂</h1>
+<button onclick="startStory()"> Januu please click here ❤️</button>
+
+<div id="messageBox">
+  <span class="corner-deco tl">🌹</span>
+  <span class="corner-deco tr">🌹</span>
+  <span class="corner-deco bl">💕</span>
+  <span class="corner-deco br">💕</span>
+  <div id="message"></div>
+</div>
 </div>
 
 <audio id="birthdayMusic" loop>
@@ -120,6 +473,23 @@ z-index:-1;
 </audio>
 
 <script>
+
+const isMobile = /Android|iPhone|iPad|iPod|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+  || window.innerWidth <= 768;
+
+const PARTICLE_RATE = isMobile ? 1.8 : 1;
+const MAX_PARTICLES = isMobile ? 60 : 150;
+
+let activeParticles = 0;
+
+function canSpawn(){
+  return activeParticles < MAX_PARTICLES;
+}
+
+function trackSpawn(el, ttl){
+  activeParticles++;
+  setTimeout(()=>{ el.remove(); activeParticles--; }, ttl);
+}
 
 let messages=[
 "Today is not just another day...",
@@ -144,108 +514,201 @@ let index=0
 function typeWriter(text,i,callback){
 if(i<text.length){
 document.getElementById("message").innerHTML+=text.charAt(i)
-setTimeout(()=>typeWriter(text,i+1,callback),40)
+setTimeout(()=>typeWriter(text,i+1,callback),65)
 }else if(callback){
-setTimeout(callback,1200)
+setTimeout(callback,2800)
 }
 }
 
 function startStory(){
-
 document.querySelector("button").style.display="none"
+document.getElementById("messageBox").style.display="block"
 
 let music=document.getElementById("birthdayMusic")
-music.volume=0.8
-music.play()
+music.volume=0.7
+music.play().catch(()=>{})
 
 showNext()
 }
 
 function showNext(){
-
 if(index<messages.length){
-
 document.getElementById("message").innerHTML=""
-
 typeWriter(messages[index],0,function(){
 index++
 showNext()
 })
-
 }else{
-
 document.getElementById("message").innerHTML=
 "<div class='final'>I Love You Forever ❤️</div>"
-
-fireworks()
-
+triggerFinale()
 }
-
 }
 
 function createHeart(){
+if(!canSpawn()) return;
 let heart=document.createElement("div")
 heart.className="heart"
-heart.innerHTML="❤️"
+let hearts=["❤️","💖","💗","💕","💝","💘","💓","🩷"]
+heart.innerHTML=hearts[Math.floor(Math.random()*hearts.length)]
 heart.style.left=Math.random()*100+"vw"
+heart.style.fontSize=(Math.random()*(isMobile?14:20)+(isMobile?12:16))+"px"
+heart.style.animationDuration=(Math.random()*4+5)+"s"
 document.body.appendChild(heart)
-setTimeout(()=>heart.remove(),6000)
+trackSpawn(heart,9000)
 }
-setInterval(createHeart,500)
+setInterval(createHeart, 400 * PARTICLE_RATE)
 
 function createSparkle(){
+if(!canSpawn()) return;
 let sparkle=document.createElement("div")
 sparkle.className="sparkle"
-sparkle.innerHTML="✨"
+let sparkles=["✨","⭐","🌟","💫"]
+sparkle.innerHTML=sparkles[Math.floor(Math.random()*sparkles.length)]
 sparkle.style.left=Math.random()*100+"vw"
 sparkle.style.top=Math.random()*100+"vh"
+sparkle.style.fontSize=(Math.random()*(isMobile?8:12)+(isMobile?10:12))+"px"
 document.body.appendChild(sparkle)
-setTimeout(()=>sparkle.remove(),2000)
+trackSpawn(sparkle,2500)
 }
-setInterval(createSparkle,300)
+setInterval(createSparkle, 200 * PARTICLE_RATE)
 
 function createConfetti(){
+if(!canSpawn()) return;
 let confetti=document.createElement("div")
 confetti.className="confetti"
-let colors=["#ff4e78","#ffffff","#ff99c8","#ffd6e0"]
+let colors=["#ff4e78","#ffffff","#ff99c8","#ffd6e0","#ffcc00","#ff6b9d","#e91e63","#f8bbd0"]
 confetti.style.background=colors[Math.floor(Math.random()*colors.length)]
 confetti.style.left=Math.random()*100+"vw"
+let sz = isMobile ? (Math.random()*5+4) : (Math.random()*8+6);
+confetti.style.width=sz+"px"
+confetti.style.height=sz+"px"
+confetti.style.borderRadius=Math.random()>0.5?"50%":"2px"
 document.body.appendChild(confetti)
-setTimeout(()=>confetti.remove(),5000)
+trackSpawn(confetti,5000)
 }
-setInterval(createConfetti,250)
+setInterval(createConfetti, 180 * PARTICLE_RATE)
 
-function fireworks(){
-for(let i=0;i<60;i++){
-let spark=document.createElement("div")
-spark.className="sparkle"
-spark.innerHTML="✨"
-spark.style.left="50vw"
-spark.style.top="40vh"
-document.body.appendChild(spark)
-setTimeout(()=>spark.remove(),2000)
+function createBalloon(){
+if(!canSpawn()) return;
+let balloon=document.createElement("div")
+balloon.className="balloon"
+let balloons=["🎈","🎈","🎀","🎁","🎊","🎉"]
+balloon.innerHTML=balloons[Math.floor(Math.random()*balloons.length)]
+balloon.style.left=Math.random()*100+"vw"
+balloon.style.fontSize=(Math.random()*(isMobile?10:15)+(isMobile?22:30))+"px"
+balloon.style.animationDuration=(Math.random()*4+6)+"s"
+document.body.appendChild(balloon)
+trackSpawn(balloon,10000)
 }
+setInterval(createBalloon, 1200 * PARTICLE_RATE)
+
+function createRosePetal(){
+if(!canSpawn()) return;
+let petal=document.createElement("div")
+petal.className="rosePetal"
+let petals=["🌹","🌸","🪻","💐","🌺","🌷"]
+petal.innerHTML=petals[Math.floor(Math.random()*petals.length)]
+petal.style.left=Math.random()*100+"vw"
+petal.style.fontSize=(isMobile?14:18)+"px"
+petal.style.animationDuration=(Math.random()*3+5)+"s"
+document.body.appendChild(petal)
+trackSpawn(petal,8000)
+}
+setInterval(createRosePetal, 600 * PARTICLE_RATE)
+
+function createGoldenStar(){
+if(!canSpawn()) return;
+let star=document.createElement("div")
+star.className="goldenStar"
+star.innerHTML="⭐"
+star.style.left=Math.random()*100+"vw"
+star.style.top=Math.random()*100+"vh"
+star.style.fontSize=(Math.random()*(isMobile?10:14)+(isMobile?8:10))+"px"
+star.style.animationDuration=(Math.random()*2+2)+"s"
+document.body.appendChild(star)
+trackSpawn(star,4000)
+}
+setInterval(createGoldenStar, 500 * PARTICLE_RATE)
+
+function createRibbon(){
+if(!canSpawn()) return;
+let ribbon=document.createElement("div")
+ribbon.className="ribbon"
+let ribbons=["🎀","🎗️","✨","🎊"]
+ribbon.innerHTML=ribbons[Math.floor(Math.random()*ribbons.length)]
+ribbon.style.left=Math.random()*100+"vw"
+ribbon.style.fontSize=(isMobile?20:28)+"px"
+ribbon.style.animationDuration=(Math.random()*4+5)+"s"
+document.body.appendChild(ribbon)
+trackSpawn(ribbon,9000)
+}
+setInterval(createRibbon, 1500 * PARTICLE_RATE)
+
+function triggerFinale(){
+let burstCount = isMobile ? 12 : 30;
+let waves = isMobile ? 3 : 5;
+
+for(let wave=0;wave<waves;wave++){
+setTimeout(()=>{
+for(let i=0;i<burstCount;i++){
+let burst=document.createElement("div")
+burst.className="fireworkBurst"
+let emojis=["✨","💖","🌟","⭐","💗","🎆","💫","🩷"]
+burst.innerHTML=emojis[Math.floor(Math.random()*emojis.length)]
+burst.style.left=(Math.random()*80+10)+"%"
+burst.style.top=(Math.random()*60+10)+"%"
+burst.style.fontSize=(Math.random()*(isMobile?18:25)+(isMobile?14:20))+"px"
+document.body.appendChild(burst)
+setTimeout(()=>burst.remove(),1500)
+}
+}, wave*800)
+}
+
+setInterval(()=>{
+let n = isMobile ? 6 : 15;
+for(let i=0;i<n;i++){
+let burst=document.createElement("div")
+burst.className="fireworkBurst"
+let emojis=["✨","💖","🌟","💗","🎆","💫"]
+burst.innerHTML=emojis[Math.floor(Math.random()*emojis.length)]
+burst.style.left=(Math.random()*80+10)+"%"
+burst.style.top=(Math.random()*60+10)+"%"
+burst.style.fontSize=(Math.random()*(isMobile?14:20)+(isMobile?12:15))+"px"
+document.body.appendChild(burst)
+setTimeout(()=>burst.remove(),1500)
+}
+},3000)
 }
 
 const canvas=document.getElementById("stars")
 const ctx=canvas.getContext("2d")
 
+function resizeCanvas(){
 canvas.width=window.innerWidth
 canvas.height=window.innerHeight
+}
+resizeCanvas()
+window.addEventListener('resize', resizeCanvas)
+window.addEventListener('orientationchange', ()=>setTimeout(resizeCanvas, 200))
 
-let stars=[]
-for(let i=0;i<200;i++){
-stars.push({
+let starCount = isMobile ? 120 : 300;
+let starsArr=[]
+for(let i=0;i<starCount;i++){
+starsArr.push({
 x:Math.random()*canvas.width,
 y:Math.random()*canvas.height,
-size:Math.random()*2
+size:Math.random()*(isMobile?1.8:2.5),
+twinkleSpeed:Math.random()*0.02+0.01,
+phase:Math.random()*Math.PI*2
 })
 }
 
 function animateStars(){
 ctx.clearRect(0,0,canvas.width,canvas.height)
-ctx.fillStyle="white"
-stars.forEach(star=>{
+starsArr.forEach(star=>{
+let brightness=0.5+0.5*Math.sin(Date.now()*star.twinkleSpeed+star.phase)
+ctx.fillStyle=`rgba(255,255,255,${brightness})`
 ctx.beginPath()
 ctx.arc(star.x,star.y,star.size,0,Math.PI*2)
 ctx.fill()
