@@ -1,0 +1,260 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday My Love</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+font-family:'Segoe UI',sans-serif;
+height:100vh;
+overflow:hidden;
+display:flex;
+justify-content:center;
+align-items:center;
+color:white;
+text-align:center;
+background: radial-gradient(circle at top,#ff4e78,#b30059);
+}
+
+.container{max-width:700px;padding:40px;z-index:2;}
+
+h1{
+font-size:32px;
+margin-bottom:20px;
+text-shadow:0 0 0px #ff99c8;
+}
+
+button{
+padding:18px 40px;
+font-size:20px;
+border:none;
+border-radius:40px;
+background:white;
+color:#ff4e78;
+cursor:pointer;
+transition:0.3s;
+box-shadow:0 0 15px #ff4e78;
+}
+
+button:hover{transform:scale(1.1);}
+
+#message{
+font-size:28px;
+line-height:1.6;
+margin-top:30px;
+min-height:200px;
+}
+
+.final{
+font-size:40px;
+margin-top:20px;
+animation:glow 2s infinite alternate;
+}
+
+@keyframes glow{
+from{text-shadow:0 0 10px #ff7eb3;}
+to{text-shadow:0 0 35px #ff4e78;}
+}
+
+.heart{
+position:absolute;
+font-size:22px;
+animation:float 6s linear infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(100vh);opacity:1;}
+100%{transform:translateY(-10vh);opacity:0;}
+}
+
+.sparkle{
+position:absolute;
+font-size:16px;
+animation:sparkle 2s linear infinite;
+}
+
+@keyframes sparkle{
+0%{transform:scale(0);opacity:0}
+50%{transform:scale(1.5);opacity:1}
+100%{transform:scale(0);opacity:0}
+}
+
+.confetti{
+position:absolute;
+width:10px;
+height:10px;
+animation:confettiFall 5s linear infinite;
+}
+
+@keyframes confettiFall{
+0%{transform:translateY(-10vh) rotate(0deg);}
+100%{transform:translateY(110vh) rotate(360deg);}
+}
+
+canvas{
+position:fixed;
+top:0;
+left:0;
+z-index:-1;
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="stars"></canvas>
+
+<div class="container">
+<h1>🎂 Happy Birthday My Sweetheart Jenny Darling 🎂 </h1>
+<button onclick="startStory()"> Jannuu please click here ❤️</button>
+<div id="message"></div>
+</div>
+
+<audio id="birthdayMusic" loop>
+<source src="birthdaymusic.mp3" type="audio/mp3">
+</audio>
+
+<script>
+
+let messages=[
+"Today is not just another day...",
+"It is the day the most beautiful soul in this world was born.",
+"And somehow destiny decided...",
+"That you would walk into my life.",
+"From that moment everything changed.",
+"You became my happiness.",
+"My peace.",
+"My best friend.",
+"And very soon...",
+"My beautiful wife.",
+"On your birthday I promise something.",
+"No matter where life takes us...",
+"I will always choose you.",
+"Again and again and again.",
+"Happy Birthday My Love ❤️"
+]
+
+let index=0
+
+function typeWriter(text,i,callback){
+if(i<text.length){
+document.getElementById("message").innerHTML+=text.charAt(i)
+setTimeout(()=>typeWriter(text,i+1,callback),40)
+}else if(callback){
+setTimeout(callback,1200)
+}
+}
+
+function startStory(){
+
+document.querySelector("button").style.display="none"
+
+let music=document.getElementById("birthdayMusic")
+music.volume=0.8
+music.play()
+
+showNext()
+}
+
+function showNext(){
+
+if(index<messages.length){
+
+document.getElementById("message").innerHTML=""
+
+typeWriter(messages[index],0,function(){
+index++
+showNext()
+})
+
+}else{
+
+document.getElementById("message").innerHTML=
+"<div class='final'>I Love You Forever ❤️</div>"
+
+fireworks()
+
+}
+
+}
+
+function createHeart(){
+let heart=document.createElement("div")
+heart.className="heart"
+heart.innerHTML="❤️"
+heart.style.left=Math.random()*100+"vw"
+document.body.appendChild(heart)
+setTimeout(()=>heart.remove(),6000)
+}
+setInterval(createHeart,500)
+
+function createSparkle(){
+let sparkle=document.createElement("div")
+sparkle.className="sparkle"
+sparkle.innerHTML="✨"
+sparkle.style.left=Math.random()*100+"vw"
+sparkle.style.top=Math.random()*100+"vh"
+document.body.appendChild(sparkle)
+setTimeout(()=>sparkle.remove(),2000)
+}
+setInterval(createSparkle,300)
+
+function createConfetti(){
+let confetti=document.createElement("div")
+confetti.className="confetti"
+let colors=["#ff4e78","#ffffff","#ff99c8","#ffd6e0"]
+confetti.style.background=colors[Math.floor(Math.random()*colors.length)]
+confetti.style.left=Math.random()*100+"vw"
+document.body.appendChild(confetti)
+setTimeout(()=>confetti.remove(),5000)
+}
+setInterval(createConfetti,250)
+
+function fireworks(){
+for(let i=0;i<60;i++){
+let spark=document.createElement("div")
+spark.className="sparkle"
+spark.innerHTML="✨"
+spark.style.left="50vw"
+spark.style.top="40vh"
+document.body.appendChild(spark)
+setTimeout(()=>spark.remove(),2000)
+}
+}
+
+const canvas=document.getElementById("stars")
+const ctx=canvas.getContext("2d")
+
+canvas.width=window.innerWidth
+canvas.height=window.innerHeight
+
+let stars=[]
+for(let i=0;i<200;i++){
+stars.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+size:Math.random()*2
+})
+}
+
+function animateStars(){
+ctx.clearRect(0,0,canvas.width,canvas.height)
+ctx.fillStyle="white"
+stars.forEach(star=>{
+ctx.beginPath()
+ctx.arc(star.x,star.y,star.size,0,Math.PI*2)
+ctx.fill()
+})
+requestAnimationFrame(animateStars)
+}
+
+animateStars()
+
+</script>
+</body>
+</html>
