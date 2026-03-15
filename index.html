@@ -506,6 +506,7 @@ let messages=[
 "From that moment everything changed",
 "You became my happiness!",
 "My peace!",
+"My Joy!",
 "My best friend!",
 "And very soon...",
 "My beautiful wife!!!",
@@ -513,6 +514,7 @@ let messages=[
 "No matter where life takes us...",
 "No matter what happens...",
 "I will always choose you",
+"and love you",
 "Again and again and again...",
 "Happy Birthday My Love ❤️"
 ]
@@ -522,7 +524,7 @@ let index=0
 function typeWriter(text,i,callback){
 if(i<text.length){
 document.getElementById("message").innerHTML+=text.charAt(i)
-setTimeout(()=>typeWriter(text,i+1,callback),65)
+setTimeout(()=>typeWriter(text,i+1,callback),55)
 }else if(callback){
 setTimeout(callback,3200)
 }
