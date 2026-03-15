@@ -39,13 +39,14 @@ position:relative;
 max-width:750px;
 width:100%;
 padding:40px;
+padding-bottom:120px;
 z-index:10;
 position:relative;
 }
 
 h1{
 font-family:'Great Vibes', cursive;
-font-size:48px;
+font-size:58px;
 margin-bottom:45px;
 text-shadow:0 0 20px rgba(255,182,213,0.8), 0 0 40px rgba(255,78,120,0.5);
 background: linear-gradient(135deg, #fff 0%, #ffd6e0 50%, #ff99c8 100%);
@@ -54,6 +55,7 @@ background: linear-gradient(135deg, #fff 0%, #ffd6e0 50%, #ff99c8 100%);
 background-clip:text;
 animation: titleShimmer 3s ease-in-out infinite;
 line-height:1.5;
+word-spacing: 10px;
 }
 
 @keyframes titleShimmer {
@@ -100,18 +102,18 @@ box-shadow:0 0 50px rgba(255,78,120,0.8), 0 0 80px rgba(255,153,200,0.4);
 }
 
 #messageBox {
-background: rgba(255,255,255,0.95);
+background: #ffffff;
 -webkit-backdrop-filter: blur(20px);
 backdrop-filter: blur(20px);
 border-radius: 20px;
 padding: 30px 25px;
-margin-top: 25px;
-min-height: 100px;
+margin-top: 40px;
+width: 100%;
 display: none;
 box-shadow:
-  0 10px 40px rgba(0,0,0,0.3),
-  0 0 40px rgba(255,78,120,0.2);
-border: 2px solid rgba(255,153,200,0.3);
+  0 8px 30px rgba(255,182,213,0.4),
+  0 0 20px rgba(255,200,220,0.3);
+border: 2px solid rgba(255,200,220,0.5);
 position:relative;
 overflow:hidden;
 }
@@ -121,7 +123,7 @@ content:'';
 position:absolute;
 top:-2px;left:-2px;right:-2px;bottom:-2px;
 border-radius:20px;
-background: linear-gradient(135deg, #ff99c8, #ff4e78, #ff99c8, #ffd6e0);
+background: linear-gradient(135deg, #ffd6e0, #ffb3c6, #ffd6e0, #fff0f3);
 z-index:-1;
 animation: borderGlow 4s linear infinite;
 background-size:300% 300%;
@@ -147,8 +149,8 @@ opacity:0.6;
 font-size:22px;
 font-family:'Playfair Display', serif;
 line-height:1.7;
-color: #4a0028;
-font-weight:400;
+color: #8b0000;
+font-weight:600;
 word-wrap:break-word;
 overflow-wrap:break-word;
 }
@@ -313,6 +315,7 @@ z-index:-1;
 @media screen and (max-width:480px){
   .container{
     padding:20px 16px;
+    padding-bottom:140px;
     display:flex;
     flex-direction:column;
     align-items:center;
@@ -322,8 +325,8 @@ z-index:-1;
   }
 
   h1{
-    font-size:30px;
-    margin-bottom:18px;
+    font-size:40px;
+    margin-bottom:10px;
     padding:0 5px;
   }
 
@@ -335,9 +338,10 @@ z-index:-1;
 
   #messageBox{
     padding:22px 18px;
-    margin-top:20px;
+    margin-top:55px;
     border-radius:18px;
-    min-height:80px;
+    width:92vw;
+    max-width:92vw;
   }
 
   #messageBox .corner-deco { font-size:13px; }
@@ -380,8 +384,10 @@ z-index:-1;
 
   #messageBox{
     padding:18px 14px;
-    margin-top:16px;
+    margin-top:50px;
     border-radius:15px;
+    width:94vw;
+    max-width:94vw;
   }
 
   #message{
@@ -431,8 +437,9 @@ z-index:-1;
 
   #messageBox{
     padding:14px 16px;
-    margin-top:10px;
-    min-height:60px;
+    margin-top:40px;
+    width:94vw;
+    max-width:94vw;
   }
 
   #message{
@@ -495,17 +502,18 @@ let messages=[
 "Today is not just another day...",
 "It is the day the most beautiful soul in this world was born.",
 "And somehow destiny decided...",
-"That you would walk into my life.",
-"From that moment everything changed.",
-"You became my happiness.",
-"My peace.",
-"My best friend.",
+"That you would walk into my life...",
+"From that moment everything changed",
+"You became my happiness!",
+"My peace!",
+"My best friend!",
 "And very soon...",
-"My beautiful wife.",
-"On your birthday I promise something.",
+"My beautiful wife!!!",
+"On your birthday I promise something...",
 "No matter where life takes us...",
-"I will always choose you.",
-"Again and again and again.",
+"No matter what happens...",
+"I will always choose you",
+"Again and again and again...",
 "Happy Birthday My Love ❤️"
 ]
 
@@ -516,7 +524,7 @@ if(i<text.length){
 document.getElementById("message").innerHTML+=text.charAt(i)
 setTimeout(()=>typeWriter(text,i+1,callback),65)
 }else if(callback){
-setTimeout(callback,2800)
+setTimeout(callback,3200)
 }
 }
 
